@@ -1,0 +1,9 @@
+{
+	keys:[
+		{name:shoot,keycodes:[Space]},
+		{name:up,keycodes:[W, Up]},
+		{name:left,keycodes:[A, Left]},
+		{name:down,keycodes:[S, Down]},
+		{name:right,keycodes:[D, Right]},
+	]
+}

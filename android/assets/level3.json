@@ -1,0 +1,47 @@
+{
+	player_pos: [-7, -5],
+	entities:[
+		{pos: [-10, -5], type: fence_s0, amount:6},
+		{pos: [22, -5], type: fence_s2, amount:5},
+		{pos: [-8, -7], type: fence_s1, amount:15},
+		{pos: [-8, 7], type: fence_s3, amount:15},
+		
+		{pos: [-10, 7], type: fence_c0, amount:1},
+		{pos: [22, 7], type: fence_c1, amount:1},
+		{pos: [22, -7], type: fence_c2, amount:1},
+		{pos: [-10, -7], type: fence_c3, amount:1},
+		
+		{pos: [-7, -3], type: arrow},
+		{pos: [-7.2, -3.2], type: arrow},
+		{pos: [-7.4, -3], type: arrow},
+		
+		{pos: [-4, -5], type: crate, size:1, static:false},
+		{pos: [0, -3], type: crate, size:1, static:false},
+		{pos: [-3, -1], type: crate, size:1, static:false},
+		{pos: [3, -1], type: crate, size:1, static:false},
+		
+		{
+			pos: [6, -5],
+			type: enemy,
+			path: [[0, -5], [-7, -5]],
+			rotation: 180
+		},
+		{
+			pos: [-7, 6],
+			type: enemy,
+			path: [[-7, 2], [-7, -5]],
+			rotation: -90
+		},
+		{
+			pos: [15, 6],
+			type: enemy,
+			path: [[-7, 2], [-7, -5]],
+			rotation: -90
+		},
+		{
+			pos: [22, 5],
+			type: exit,
+			next: end
+		},
+	]
+}

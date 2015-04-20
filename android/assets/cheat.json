@@ -1,0 +1,20 @@
+{
+	player_pos: [0, 0],
+	entities:[
+		{
+			pos: [4, 0],
+			type: exit,
+			next: level1.json
+		},
+		{
+			pos: [4, 3],
+			type: exit,
+			next: level2.json
+		},
+		{
+			pos: [4, 6],
+			type: exit,
+			next: level3.json
+		},
+	]
+}

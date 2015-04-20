@@ -1,0 +1,3 @@
+[submodule "libgdx-utils"]
+	path = libgdx-utils
+	url = git@github.com:Walnoot/LibgdxUtils.git

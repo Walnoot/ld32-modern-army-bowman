@@ -60,3 +60,5 @@ nb-configuration.xml
 build/
 
 android/libs
+
+Thumbs.db

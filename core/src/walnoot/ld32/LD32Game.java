@@ -1,27 +1,67 @@
 package walnoot.ld32;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import walnoot.libgdxutils.State;
+import walnoot.libgdxutils.StateApplication;
+import walnoot.libgdxutils.input.InputHandler;
 
-public class LD32Game extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.PixmapPacker;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+
+public class LD32Game extends StateApplication {
+	public static final float FPS = 60f;
+	private static final boolean DEBUG = false;
+	
+	public LD32Game() {
+		super(FPS, DEBUG);
+	}
 	
 	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+	protected void init() {
+		Input.i = InputHandler.read(Gdx.files.internal("input.json"));
+		Gdx.input.setInputProcessor(Input.i);
+		
+		PixmapPacker packer = new PixmapPacker(1024, 1024, Format.RGBA8888, 2, true);
+		pack(packer, "arrow");
+		pack(packer, "bow");
+		pack(packer, "box");
+		pack(packer, "crate");
+		pack(packer, "dot");
+		pack(packer, "enemy");
+		pack(packer, "exit");
+		pack(packer, "fence_straight");
+		pack(packer, "fence_corner");
+		pack(packer, "player");
+		pack(packer, "view_cone");
+		
+		Assets.ATLAS = packer.generateTextureAtlas(TextureFilter.Linear, TextureFilter.Linear, false);
+		
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		parameter.size = 32;
+		Assets.FONT = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf")).generateFont(parameter);
 	}
-
+	
+	private void pack(PixmapPacker packer, String name) {
+		packer.pack(name, new Pixmap(Gdx.files.internal(name + ".png")));
+	}
+	
 	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+	protected void update() {
+		super.update();
+		
+//		if (DEBUG) Timelapse.update();
+		
+		Input.i.update();
+	}
+	
+	@Override
+	protected State getFirstState() {
+		return new IntroState(Controllers.getControllers().size > 0);
+//		return new GameState();
 	}
 }

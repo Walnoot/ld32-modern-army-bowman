@@ -1,0 +1,33 @@
+{
+	player_pos: [-7, -5],
+	entities:[
+		{pos: [-10, -5], type: fence_s0, amount:6},
+		{pos: [22, -5], type: fence_s2, amount:5},
+		{pos: [-8, -7], type: fence_s1, amount:15},
+		{pos: [-8, 7], type: fence_s3, amount:15},
+		
+		{pos: [-10, 7], type: fence_c0, amount:1},
+		{pos: [22, 7], type: fence_c1, amount:1},
+		{pos: [22, -7], type: fence_c2, amount:1},
+		{pos: [-10, -7], type: fence_c3, amount:1},
+		
+		{pos: [-4, -5], type: crate},
+		{pos: [-4, -3], type: crate},
+		{pos: [-4, -1], type: crate},
+		{pos: [-4, 1], type: crate},
+		
+		{pos: [-7, -3], type: arrow},
+		{pos: [-7.2, -3.2], type: arrow},
+		{pos: [-7.4, -3], type: arrow},
+		{
+			pos: [5, 0],
+			type: enemy,
+			path: []
+		},
+		{
+			pos: [22, 5],
+			type: exit,
+			next: level2.json
+		},
+	]
+}
